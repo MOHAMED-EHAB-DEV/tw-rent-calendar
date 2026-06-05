@@ -1,0 +1,14 @@
+{
+    "name": {
+        "ar": "tw-rent-calendar",
+        "en": "tw-rent-calendar"
+    },
+    "description": {
+        "ar": "",
+        "en": ""
+    },
+    "author_email": "salla@estajer.com",
+    "support_url": "",
+    "repository": "https://github.com/MOHAMED-EHAB-DEV/tw-rent-calendar",
+    "components": []
+}
