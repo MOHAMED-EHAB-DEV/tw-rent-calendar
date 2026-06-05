@@ -1,67 +1,47 @@
-/* ===================================================
-   Rental Calendar — Component Styles
-   =================================================== */
-
-rental-calendar,
-rental-calendar * {
-  box-sizing: border-box;
-}
-
-rental-calendar {
+.rental-calendar-root {
   display: block;
   font-family: inherit;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
 }
-
-/* Container */
-.rental-calendar-container {
-  margin-block-start: 1rem;
-  margin-block-end: 1.5rem;
-}
-
-/* Title */
 .calendar-title {
   font-size: 1.125rem;
   font-weight: 700;
-  margin-block-end: 0.75rem;
-  padding-inline: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   color: #1f2937;
 }
-
-/* Calendar Card */
-.rental-calendar {
+.rental-calendar-box {
   width: 100%;
   background-color: #ffffff;
   border-radius: 2rem;
   padding: 1rem;
   border: 1px solid #e5e7eb;
+  box-sizing: border-box;
 }
-
 @media (min-width: 768px) {
-  .rental-calendar {
+  .rental-calendar-box {
     padding: 1.5rem;
   }
 }
-
-/* Header */
 .calendar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-block-end: 1.5rem;
-  padding-inline: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-
 .current-month {
   font-size: 1.1rem;
   font-weight: 600;
   color: #1f2937;
 }
-
 .nav-buttons {
   display: flex;
   gap: 0.5rem;
 }
-
 .nav-buttons button {
   width: 2rem;
   height: 2rem;
@@ -76,28 +56,22 @@ rental-calendar {
   transition: opacity 0.2s;
   color: #4b5563;
 }
-
 .nav-buttons button:hover {
   opacity: 1;
 }
-
-/* Grid */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 0.25rem;
 }
-
 .weekday {
   text-align: center;
   font-size: 0.7rem;
   font-weight: 500;
   color: #9ca3af;
-  padding-block-end: 0.5rem;
+  padding-bottom: 0.5rem;
   text-transform: uppercase;
 }
-
-/* Day Cells */
 .day {
   aspect-ratio: 1 / 1;
   display: flex;
@@ -112,28 +86,21 @@ rental-calendar {
   color: #374151;
   user-select: none;
 }
-
 @media (min-width: 768px) {
-  .day {
-    font-size: 1rem;
-  }
+  .day { font-size: 1rem; }
 }
-
 .day.outside {
   color: #d1d5db;
   pointer-events: none;
   opacity: 0.5;
 }
-
 .day.disabled {
   color: #e5e7eb;
   pointer-events: none;
 }
-
 .day.disabled.booked {
   opacity: 0.3;
 }
-
 .day.disabled.booked::after {
   content: "";
   position: absolute;
@@ -142,15 +109,17 @@ rental-calendar {
   background-color: #9ca3af;
   transform: rotate(-45deg);
   top: 50%;
-  inset-inline-start: 25%;
+  left: 25%;
 }
-
+html[dir="rtl"] .day.disabled.booked::after {
+  right: 25%;
+  left: auto;
+}
 .day.today {
   color: var(--color-primary, #008060);
   font-weight: bold;
   background-color: #f9fafb;
 }
-
 .day.selected {
   background-color: var(--color-primary, #008060);
   color: #ffffff;
@@ -158,51 +127,66 @@ rental-calendar {
   border-radius: 0.5rem;
   z-index: 2;
 }
-
-.day.in-range {
-  background-color: #f3f4f6;
-}
-
-.day:hover:not(.outside):not(.disabled):not(.selected) {
-  background-color: #f3f4f6;
-}
-
-/* Error */
+.day.in-range { background-color: #f3f4f6; }
+.day:hover:not(.outside):not(.disabled):not(.selected) { background-color: #f3f4f6; }
 .calendar-error-msg {
   color: #ef4444;
   font-size: 0.875rem;
-  margin-block-start: 0.5rem;
-  padding-inline: 0.25rem;
+  margin-top: 0.5rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
   font-weight: 700;
 }
-
-.calendar-error-msg.hidden {
-  display: none;
-}
-
-/* Footer */
+.calendar-error-msg.hidden { display: none; }
 .calendar-footer {
-  margin-block-start: 1rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.875rem;
   border-top: 1px solid #f3f4f6;
-  padding-block-start: 1rem;
-  padding-inline: 0.25rem;
+  padding-top: 1rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
-
-.duration-info {
-  color: #4b5563;
-}
-
-.duration-info .days-count {
+.duration-info { color: #4b5563; }
+.duration-info span {
   font-weight: 700;
   color: var(--color-primary, #008060);
 }
-
 .hint-info {
   font-size: 0.75rem;
   color: #9ca3af;
   font-style: italic;
 }
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-bottom: 1rem;
+}
+@media (min-width: 768px) {
+  .packages-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.package-card {
+  cursor: pointer;
+  border: 2px solid #f3f4f6;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  background-color: #ffffff;
+}
+.package-card:hover { border-color: var(--color-primary, #008060); }
+.package-card.selected {
+  border-color: var(--color-primary, #008060);
+  background-color: #f0fdf4;
+}
+.package-title { font-weight: 700; color: #1f2937; }

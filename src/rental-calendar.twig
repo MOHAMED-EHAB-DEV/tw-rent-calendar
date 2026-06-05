@@ -1,0 +1,43 @@
+{# 
+   Requires variables to be passed or globally available in the template: 
+   product.id, theme.locale 
+#}
+<div 
+  id="rental-calendar-root" 
+  class="rental-calendar-root" 
+  data-product-id="{{ product.id }}" 
+  data-locale="{{ theme.locale|default('ar')|slice(0, 2) }}"
+>
+    <h3 class="calendar-title" id="rc-title"></h3>
+
+    <!-- Packages View (Hidden by default) -->
+    <div id="rc-packages-view" style="display: none;">
+        <div class="packages-grid" id="rc-packages-grid"></div>
+    </div>
+
+    <!-- Standard Calendar View -->
+    <div id="rc-calendar-view" class="rental-calendar-box" style="display: none;">
+        <div class="calendar-header">
+            <span class="current-month" id="rc-current-month"></span>
+            <div class="nav-buttons">
+                <button type="button" id="rc-prev-month" aria-label="Previous Month"></button>
+                <button type="button" id="rc-next-month" aria-label="Next Month"></button>
+            </div>
+        </div>
+
+        <div class="calendar-grid" id="rc-calendar-grid">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="rc-error-msg" class="calendar-error-msg hidden"></div>
+
+    <!-- Footer -->
+    <div id="rc-footer" class="calendar-footer" style="display: none;">
+        <div class="duration-info">
+            <span id="rc-duration-label"></span>: <span id="rc-days-count">0</span> <span id="rc-days-label"></span>
+        </div>
+        <div class="hint-info" id="rc-hint-info"></div>
+    </div>
+</div>

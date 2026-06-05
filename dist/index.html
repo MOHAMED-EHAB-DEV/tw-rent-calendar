@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Salla Calendar Local Test</title>
+    <style>
+      body { font-family: system-ui; max-width: 600px; margin: 2rem auto; }
+      .product-form { padding: 1rem; border: 1px solid #ccc; border-radius: 10px; }
+      .salla-product-options__item { margin-bottom: 1rem; }
+    </style>
+    <script type="module" crossorigin src="/assets/index-DnMAMjuc.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CVs1yQZW.css">
+  </head>
+  <body>
+
+    <div class="product-form">
+      <!-- Mock Salla Price -->
+      <div class="price-wrapper">
+        <h2 class="total-price">150 SAR</h2>
+      </div>
+
+      <!-- Mock Salla Product Options -->
+      <div class="salla-product-options__item">
+        <label>تاريخ البدء</label>
+        <input type="date" name="start_date" />
+      </div>
+      <div class="salla-product-options__item">
+        <label>تاريخ الانتهاء</label>
+        <input type="date" name="end_date" />
+      </div>
+      <div class="salla-product-options__item">
+        <label>مدة الإيجار</label>
+        <select>
+          <option value="">اختر</option>
+          <option value="1">يوم واحد</option>
+          <option value="2">يومين</option>
+          <option value="3">3 أيام</option>
+        </select>
+      </div>
+
+      <!-- YOUR COMPONENT -->
+      <rental-calendar product-id="123" locale="ar"></rental-calendar>
+
+      <br />
+      <!-- Mock Salla Add To Cart Button -->
+      <salla-add-product-button>
+        <button type="submit" style="padding: 10px 20px; background: #008060; color: white;">
+          إضافة للسلة
+        </button>
+      </salla-add-product-button>
+    </div>
+
+    <!-- Mock Salla JS Object -->
+    <script>
+      window.salla = {
+        money: (amount) => amount + ' SAR',
+        product: {
+          event: {
+            onPriceUpdated: (callback) => {
+              console.log("Salla Price Listener Registered");
+            }
+          }
+        }
+      };
+    </script>
+
+    <!-- Load your Lit component -->
+  </body>
+</html>
